@@ -125,19 +125,16 @@ func (r *NodePoolReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 		log.Log.Info("not find, will create runtimeClass")
 		runtimeClass = pool.RuntimeClass()
 		err = ctrl.SetControllerReference(pool, runtimeClass, r.Scheme)
-		log.Log.Info("111111111111111111111111ss")
 		if err != nil {
 			return ctrl.Result{}, err
 		}
 
-		log.Log.Info("222222222222222222222222ss")
 		err = r.Create(ctx, runtimeClass)
 		if err != nil {
 			return ctrl.Result{}, err
 		}
 	}
 
-	log.Log.Info("33333333333333333333333333ss")
 	// 如果存在则更新
 	runtimeClass.Scheduling = pool.RuntimeClass().Scheduling
 	runtimeClass.Handler = pool.RuntimeClass().Handler
@@ -146,7 +143,6 @@ func (r *NodePoolReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 		return ctrl.Result{}, err
 	}
 
-	log.Log.Info("444444444444444444444ss")
 	// 添加测试事件
 	r.Recorder.Event(pool, corev1.EventTypeNormal, "test", "test")
 
