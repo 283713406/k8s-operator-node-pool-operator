@@ -1,0 +1,12 @@
+apiVersion: nodes.kylin.org/v1
+kind: NodePool
+metadata:
+  name: worker
+spec:
+  taints:
+    - key: node-pool.kylin.org
+      value: worker
+      effect: NoSchedule
+  labels:
+    "node-pool.kylin.org/worker": "10"
+  handler: runc

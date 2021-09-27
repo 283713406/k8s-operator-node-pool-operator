@@ -1,0 +1,7 @@
+apiVersion: nodes.kylin.org/v1
+kind: NodePool
+metadata:
+  name: nodepool-sample
+spec:
+  # Add fields here
+  foo: bar
